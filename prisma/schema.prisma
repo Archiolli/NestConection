@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model railway_stoppages_daily {
+  id                     Int      @id @default(autoincrement())
+  wagon_warehouse_log_id Int
+  terminal_id            Int
+  warehouse_id           Int
+  product_id             Int
+  start_stopping_time    DateTime @db.Timestamptz(6)
+  end_stopping_time      DateTime @db.Timestamptz(6)
+  reason_stop            Int
+  created_at             DateTime @default(now()) @db.Timestamptz(6)
+  updated_at             DateTime @default(now()) @db.Timestamptz(6)
+}
